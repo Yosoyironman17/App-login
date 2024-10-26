@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Register from './Register';
+import Login from './Login';
+import './index.css'; // Asegúrate de que este archivo esté importado
 
-function App() {
+const App = () => {
+  const [showRegister, setShowRegister] = useState(false);
+
+  const handleRegisterClick = () => {
+    setShowRegister(true);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex flex-col items-center justify-center h-screen">
+      {showRegister ? (
+        <Register />
+      ) : (
+        <>
+          <Login />
+          <button
+            onClick={handleRegisterClick}
+            className="mt-4 text-blue-500 hover:underline"
+          >
+            ¿No tienes una cuenta? Regístrate aquí.
+          </button>
+        </>
+      )}
     </div>
   );
-}
+};
 
 export default App;
